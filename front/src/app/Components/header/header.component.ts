@@ -18,6 +18,6 @@ export class HeaderComponent implements OnInit {
   HandleLogOut($event: MouseEvent) {
     $event.preventDefault();
     this._login.logMeOut();
-    this.router.navigate(['home']);
+    this.router.navigate(['register','login']);
   }
 }

@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit {
     }
     else{
       this.checked = false;
+      debugger
       this.selectedUser =  this.users.find(u => u.email === this.user.email)!;
       if(this.selectedUser){
         this.isExist = true;

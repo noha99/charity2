@@ -26,7 +26,7 @@ public class Project {
   @Column(name = "category")
   private String category;
 
-  @Column(name = "isDone")
+  @Column(name = "is_done")
   private boolean isDone;
 
   @Column(name = "place")
@@ -104,10 +104,6 @@ public class Project {
 
   public boolean isDone() {
     return isDone;
-  }
-
-  public void setDone(boolean done) {
-    isDone = done;
   }
 
   public String getPlace() {

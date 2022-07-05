@@ -35,13 +35,16 @@ export class ProjectinfoComponent implements OnInit {
       (params) => {
         const selectedProjectId = params['id'];
         if (selectedProjectId) {
+          debugger
           this.project = this.projects.find(proj => proj.id === +selectedProjectId)!;//It tells TypeScript that even though something looks like it could be null, it can trust you that it's not
         }
       }
     );
-    if(this.project.donation>=this.project.amountNeeded){
-      this.project.isDone=true;
-      this.projectService.updateProject(this.project).subscribe((d) => {});
+    debugger
+    if(this.project.donation >= this.project.amountNeeded){
+      this.project.isDone =true;
+      this.projectService.updateProject(this.project).subscribe(
+        (d) => {});
     }
   }
 

@@ -46,32 +46,33 @@ export class LoginComponent implements OnInit {
       this.msgs = 'password is required';
     } else {
       this.checked = false;
-      this.selectedUser = this.users.find(u => u.email === email)!;
-      if (this.selectedUser) {
-        if (this.selectedUser.password === password) {
-          this.isExist = true;
-          if (this.selectedUser.type == 'user') {
-            this._loginService.LogMeIn(this.selectedUser.id.toString(),this.selectedUser.name,this.selectedUser.type);
-            this.router.navigate(['home']);
-          } else if (this.selectedUser.type == 'admin') {
-            this._loginService.LogMeIn(this.selectedUser.id.toString() , this.selectedUser.name,this.selectedUser.type);
-            this.router.navigate(['admin']);
+      if (this.users){
+        this.selectedUser = this.users.find(u => u.email === email)!;
+        if (this.selectedUser) {
+          if (this.selectedUser.password === password) {
+            this.isExist = true;
+            if (this.selectedUser.type == 'user') {
+              this._loginService.LogMeIn(this.selectedUser.id.toString(),this.selectedUser.name,this.selectedUser.type);
+              this.router.navigate(['home']);
+            } else if (this.selectedUser.type == 'admin') {
+              this._loginService.LogMeIn(this.selectedUser.id.toString() , this.selectedUser.name,this.selectedUser.type);
+              this.router.navigate(['admin']);
+            }
+          } else {
+            this.isExist = false;
+            this.selectedUser = new User();
+            this.msgs = 'username or password is incorrect';
           }
         } else {
           this.isExist = false;
           this.selectedUser = new User();
           this.msgs = 'username or password is incorrect';
         }
-      } else {
-        this.isExist = false;
-        this.selectedUser = new User();
-        this.msgs = 'username or password is incorrect';
       }
-      // }
-      // else {
-      // this.isLogin = true;
-      // this.router.navigate(['admin', 'users']);
-      // }
+      else {
+        this.checked = true;
+        this.msgs = 'this user doesnot exist , please sign up ';
+      }
 
       }
       console.log(this.user);

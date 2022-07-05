@@ -4,7 +4,7 @@
     <div class="page__content-data text-center">
       <p-tabView>
 
-        <p-tabPanel header="charts" leftIcon="pi pi-chart-bar">
+        <p-tabPanel header="Statistics" leftIcon="pi pi-sort-numeric-up-alt">
           <div class="row">
             <div class="col-sm-12">
               <h6>Projects and Donations Overview</h6>
@@ -21,22 +21,22 @@
                       <p>{{casesnum}}</p>
                     </span>
                 </div>
-                  <div class="col-sm-2" style="background-color: forestgreen">
+                <div class="col-sm-2" style="background-color: palevioletred">
                     <span>
-                      <h5>Donations </h5>
-                      <p>{{donationsnum}}</p>
+                      <h5>Done Cases</h5>
+                    <p>{{doneCases}}</p>
                     </span>
-                  </div>
+                </div>
                   <div class="col-sm-2" style="background-color: palevioletred">
                     <span>
                       <h5>Done Projects</h5>
                     <p>{{doneProjects}}</p>
                     </span>
                   </div>
-                <div class="col-sm-2" style="background-color: palevioletred">
+                <div class="col-sm-2" style="background-color: forestgreen">
                     <span>
-                      <h5>Done Cases</h5>
-                    <p>{{doneCases}}</p>
+                      <h5>Donations </h5>
+                      <p>{{donationsnum}}</p>
                     </span>
                 </div>
                   <div class="col-sm-2" style="background-color: #42a4f3">
@@ -46,36 +46,15 @@
                     </span>
                   </div>
                 </div>
-
-              <p-divider></p-divider>
-
-              <div class="row">
-                <div class="col-sm-8">
-                  <h6>Yearly Report</h6>
-                  <div class="card">
-                    <div class="card-body ">
-                      <p-card>
-                        <p-chart type="line" [data]="yearlyReport" ></p-chart>
-                      </p-card>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <h6>Amount <br> Received / Paid</h6>
-                  <p-card class="doughnut">
-                    <p-chart  type='doughnut' [data]="receivedPaid"></p-chart>
-                  </p-card>
-                </div>
-              </div>
             </div>
           </div>
         </p-tabPanel>
 
-        <p-tabPanel header="Projects' Donations" leftIcon="pi pi-dollar">
+        <p-tabPanel header="Donations" leftIcon="pi pi-dollar">
           <app-donations></app-donations>
         </p-tabPanel>
 
-        <p-tabPanel header="Cases' Donations" leftIcon="pi pi-dollar">
+        <p-tabPanel header="All Cases" leftIcon="pi pi-dollar">
           <app-all-cases></app-all-cases>
         </p-tabPanel>
 

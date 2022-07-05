@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClientService} from "../../../service/http-client.service";
-import {Project} from "../../../model/Project";
-import {ProjectService} from "../../../service/ProjectService";
+
 import {DonationService} from "../../../service/DonationService";
 import {Donation} from "../../../model/Donation";
 
@@ -12,13 +10,11 @@ import {Donation} from "../../../model/Donation";
 })
 export class DonationsComponent implements OnInit {
 
-  projects: Project[] = [];
-  donations: Donation[] = [];
+  projectsDonations: Donation[] = [];
+  casesDonations: Donation[] = [];
 
-  data : any;
-  constructor(private projectService: ProjectService,
-              private httpClientService: HttpClientService,
-              private donationService: DonationService) {
+  data : Donation[] = [];
+  constructor(private donationService: DonationService) {
   }
 
   ngOnInit() {
@@ -26,19 +22,18 @@ export class DonationsComponent implements OnInit {
     this.donationService.getDonationList().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
-    this.projectService.getProjectsList().subscribe(
-      response =>  this.projects = response
-    );
-    this.projectService.getProjectsDonationList().subscribe(
-      response =>  this.data = response
-    );
-    // this.httpClientService.getUsers().subscribe(
-    //   response => this.users = response
-    // );
   }
 
   handleSuccessfulResponse(response: Donation[]) {
-    this.donations = response;
+    this.data = response;
+    this.data.forEach(d=>{
+      if(d.projectId){
+        this.projectsDonations.push(d);
+      }
+      else if(d.caseId){
+        this.casesDonations.push(d);
+      }
+    });
   }
 
 

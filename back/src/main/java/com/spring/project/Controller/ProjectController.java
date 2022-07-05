@@ -33,32 +33,44 @@ public class ProjectController {
   }
 
   @GetMapping("/donations/get")
-  public ResponseEntity<ArrayList<Object>> getProjectsDonation() {
+  public ResponseEntity<List> getProjectsDonation() {
     List<Project> projectList;
     projectList = projectRepo.findAll();
     List<Donation> donationList;
     donationList = donationRepo.findAll();
 
-    ArrayList<Object> arr = new ArrayList<>();
-//    HashMap<String , Object> data = new HashMap<>();
+    Set<Map.Entry<String, Object>> set = null;
+    List<Set<Map.Entry<String, Object>>> list = new ArrayList<>();
+
     for (Project project : projectList){
-//      if( project != null){
-//        arr.add(project);
-//      }
+      HashMap<String, Object> data = new HashMap<>();
+      HashMap<String , Object> donationData = new HashMap<>();
+
+      data.put("title",project.getTitle());
+      data.put("category",project.getCategory());
+      data.put("details",project.getDetails());
+      data.put("image",project.getImage());
+      data.put("place",project.getPlace());
+      data.put("amountNeeded",project.getAmountNeeded());
+      data.put("donation",project.getDonation());
+      data.put("isDone",project.isDone());
       for(Donation donation : donationList){
         if(donation != null){
           if (project.getId() == donation.getProjectId()){
-            arr.add(donation);
+            donationData.put("donation",donation);
           }
         }
       }
-//      data.put("data" , arr);
+      data.putAll(donationData);
+      set = data.entrySet();
+      list.add(set);
     }
 
-    if (arr.isEmpty()) {
+
+    if (list.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } else {
-      return new ResponseEntity<>(arr, HttpStatus.OK);
+      return new ResponseEntity<>(list, HttpStatus.OK);
     }
   }
 

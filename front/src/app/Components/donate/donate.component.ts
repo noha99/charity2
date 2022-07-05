@@ -26,7 +26,7 @@ export class DonateComponent implements OnInit {
       this.router.navigate(['/pages','donation'],{ queryParams: { 'caseId': this.caseId }});
     }
     else{
-      this.router.navigateByUrl('/pages/donation');
+      this.router.navigateByUrl('/pages/projects');
     }
   }
 

@@ -27,11 +27,6 @@ export class DashboardComponent implements OnInit {
   users: User[] = [];
   usersnum:number = 0;
 
-
-  yearlyReport: any;
-  // basicOptions: any;
-  receivedPaid: any;
-
   doneProjects: any = 0;
   doneCases: any = 0;
 
@@ -89,36 +84,6 @@ export class DashboardComponent implements OnInit {
         }
       }
     );
-    this.yearlyReport = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'purchased',
-          data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
-          borderColor: '#42A5F5',
-          tension: .4
-        },
-        {
-          label: 'sold',
-          data: [28, 48, 40, 19, 86, 27, 90],
-          fill: false,
-          borderColor: '#FFA726',
-          tension: .4
-        }
-      ]
-    };
-
-    this.receivedPaid = {
-      labels: ['Paid' ,'Received'],
-      datasets: [
-        {
-          labels: ['Paid' ,'Received'],
-          backgroundColor: ['#42A5F5','#FFA726'],
-          data: [65 + 59+ 80+ 81+ 56+ 55+ 40 , 28+ 48+ 40+ 19+ 86+ 27+ 90]
-        }
-      ]
-    };
 
     this.finished();
   }

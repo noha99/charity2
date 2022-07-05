@@ -35,17 +35,6 @@
     <div *ngIf="first_step">
       <div class="row" style="margin: 0 17%;">
 
-        <div class="card" *ngIf="donation.projectId == null && donation.caseId == null">
-          <label>Select a project</label>
-          <p-listbox [style.margin]="'-1px -20px'" [options]="projects" [(ngModel)]="selectedProject" [metaKeySelection]="false" [checkbox]="true" [filter]="true" optionLabel="name" >
-            <ng-template let-project pTemplate="item">
-              <div class="country-item">
-                <div>{{project.category}}</div>
-              </div>
-            </ng-template>
-          </p-listbox>
-        </div>
-
         <div class="card box">
           <label>Choose an amount to give</label>
           <div style="margin: -1px -20px;" class="p-inputgroup">

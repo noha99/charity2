@@ -13,29 +13,14 @@ import {CaseService} from "../../../service/CaseService";
 export class AllCasesComponent implements OnInit {
 
   cases: Case[] = [];
-  donations: Donation[] = [];
 
-  data : any;
-  constructor(private caseService: CaseService,
-              private httpClientService: HttpClientService,
-              private donationService: DonationService) {
+  constructor(private caseService: CaseService) {
   }
 
   ngOnInit() {
     debugger
-    this.donationService.getDonationList().subscribe(
-      response => this.handleSuccessfulResponse(response),
-    );
     this.caseService.getCasesList().subscribe(
       response =>  this.cases = response
     );
-    this.caseService.getCasesDonationList().subscribe(
-      response =>  this.data = response
-    );
   }
-
-  handleSuccessfulResponse(response: Donation[]) {
-    this.donations = response;
-  }
-
 }
